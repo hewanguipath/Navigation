@@ -6,7 +6,7 @@
 
 ### Introduction
 
-For this project, you will train an agent to navigate (and collect bananas!) in a large, square world.  
+For this project, I will train an agent to navigate (and collect bananas!) in a large, square world.  
 
 ![Trained Agent][image1]
 
@@ -34,22 +34,22 @@ The task is episodic, and in order to solve the environment, your agent must get
 
 2. Place the file in the DRLND GitHub repository, in the `p1_navigation/` folder, and unzip (or decompress) the file. 
 
-### Instructions
+### Implementations
 
-Follow the instructions in `Navigation.ipynb` to get started with training your own agent!  
+1. Define the Deep Q-Network:
+    - As we had observed the Vector Observation space size in this enviroment is 37
+    - First hiden layer units as 64 and 2nd hiden layer as 16, small enough to run in cpu
+    - Relu is a better choice in this senario, as we need the values diverse enough to make the choice of actions.
 
-### (Optional) Challenge: Learning from Pixels
+2. Define the Replay Buffer:
+    - make a deque for memorizing episode
+    
+3. Define the Agent:
+    - since DQN is off-policy learning, I need to define 2 Deep Q-Networks: local and target, the local network will used for the current policy, and the target network will be used as updating the better policy
 
-After you have successfully completed the project, if you're looking for an additional challenge, you have come to the right place!  In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  A more challenging task would be to learn directly from pixels!
-
-To solve this harder task, you'll need to download a new Unity environment.  This environment is almost identical to the project environment, where the only difference is that the state is an 84 x 84 RGB image, corresponding to the agent's first-person view.  (**Note**: Udacity students should not submit a project with this new environment.)
-
-You need only select the environment that matches your operating system:
-- Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Linux.zip)
-- Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana.app.zip)
-- Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86.zip)
-- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
-
-Then, place the file in the `p1_navigation/` folder in the DRLND GitHub repository, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
-
-(_For AWS_) If you'd like to train the agent on AWS, you must follow the instructions to [set up X Server](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above.
+4. Train the DQN:
+    - Epsilon starts from 1 and times 0.97 as decay, this will make it down to 0.002 around 200 episode
+    - The navigations goes 300 - 1000 steps, so make the minimum epsilon as 0.0005 gets very good result at first 300 episodes
+    - The model reach average score as 13 around 200 episodes, and 15 in 404 episodes
+    
+    
