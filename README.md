@@ -42,10 +42,11 @@ The task is episodic, and in order to solve the environment, your agent must get
     - Relu is a better choice in this senario, as we need the values diverse enough to make the choice of actions.
 
 2. Define the Replay Buffer:
-    - make a deque for memorizing episode
+    - Make a deque for memorizing episode
+    - Each step of episode will be saved in the buffer
     
 3. Define the Agent:
-    - since DQN is off-policy learning, I need to define 2 Deep Q-Networks: local and target, the local network will used for the current policy, and the target network will be used as updating the better policy
+    - Since DQN is off-policy learning, I need to define 2 Deep Q-Networks: local and target, the local network will used for the current policy, and the target network will be used as updating the better policy
 
 4. Train the DQN:
     - Epsilon starts from 1 and times 0.97 as decay, this will make it down to 0.002 around 200 episode
