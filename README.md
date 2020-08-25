@@ -40,9 +40,10 @@ The task is episodic, and in order to solve the environment, your agent must get
 1. Define the Deep Q-Network:
     - with Dueling DDQN, the performance improved
     - As we had observed the Vector Observation space size in this environment is 37, so I have defined First hidden layer units as 128 and 2nd hidden layer as 32, small enough to run in CPU
-    - Then the 2-liner hidden layers for state value and advantage values same as 2nd hidden layer, 32, respectively
-    - Relu is a better choice in this senario than tanh, as we need the values diverse enough to make the choice of actions.
-    ![Dueling DDQN][image2]
+    - Then 2 liner hidden layers for state value and advantage values, same as 2nd hidden layer, 32, respectively
+    - Relu is a better choice in this senario than tanh in this senario, as we need the values diverse enough to make the choice of actions.
+    
+    - ![Dueling DDQN][image2]
 
 2. Define the Replay Buffer:
     - Make a deque for memorizing episode
